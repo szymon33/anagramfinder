@@ -1,0 +1,15 @@
+<%= form_for(@anagram, :remote => true, :multipart => true) do |f| %>
+  <%= f.hidden_field :dict_status %>
+  <div id='error_section'><%= render "error_messages", :target => @anagram %></div>
+  <div id='dict_status_section'></div><br />
+  <div class="field">
+    <%= f.file_field :dictionary, :html=>{ :value => params[:dictionary] } %>
+  </div>  
+  <hr />
+  <div class="field">
+    <%= f.label :word, "Enter a word to search anagrams" %><br />
+    <%= f.text_field :word %>
+    <%= f.submit "GO ->" %>
+  </div>
+<% end %>
+<% debug params %>

@@ -1,0 +1,10 @@
+<b><%= Time.now.strftime('%d-%b-%Y %I:%m %p') %></b><br>	
+<% if @anagram.anagrams.blank? %> 
+<%=  "No anagrams found for word '#{@anagram.word}'" %>
+<% else %>
+<%= "#{@anagram.anagrams.size} anagrams found for '#{@anagram.word}' in #{@anagram.time_find_new_anagram}ms" %><br/>
+<%= @anagram.anagrams.join(", ") %>
+<% end %>
+</p>
+
+

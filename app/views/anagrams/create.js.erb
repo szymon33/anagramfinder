@@ -1,0 +1,7 @@
+<% if @anagram.valid? %>
+	$('#error_section').html('<%= escape_javascript(flash.discard(:notice)) %>');	
+	$('#log_section').prepend("<%= raw escape_javascript(render(@anagram)) %>")
+	$(".new_anagram")[0].reset();
+<% end %>
+$('#error_section').html("<%= raw escape_javascript(render "error_messages", :target => @anagram) %>")
+$('#dict_status_section').html('<%= escape_javascript("#{session[:dict_status]}") %>');

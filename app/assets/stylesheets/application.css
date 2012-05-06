@@ -2,3 +2,52 @@
  *= require_self
  *= require_tree . 
 */
+
+body.main_page {
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   left: 0px;
+   width:768px;
+   margin: auto;
+   color: #000000;
+   font-family: "arial";
+   font-size: 12px;
+   background-color: #0067C8;
+ }
+ 
+form { display: block; }
+ 
+.header,  .footer {
+	width: 100%;
+	clear:both;
+}
+
+.header {
+	background: rgb(37,37,37);
+	border-radius: 6px; 
+	color: white;
+	font-size: 1.5em;
+  	vertical-align: middle; 
+  	padding: 1em 0em 1em 0em;
+  	margin-bottom: 10px;
+}
+
+div.header span {  margin-left: 1em; }
+
+.content {display: inline-block; width:100%; }
+
+.left, .right {
+  display:inline;
+  width: 45%; 
+}
+.left { float: left }
+.right { float: right }
+
+.window {
+  background: rgb(221,221,221);   
+  border-radius: 6px;   
+  margin:5px; 
+  padding: 1em;
+}	
+

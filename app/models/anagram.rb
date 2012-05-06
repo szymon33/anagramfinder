@@ -24,41 +24,43 @@ class Anagram
   		errors.add(:base, "No dictinary available") 
 	else
 		if @hashed_anagram_clases.blank?
-			if dict_take.blank?
-				@dict_status = nil
-				errors.add(:base, "is empty or invalid dictionary") 
-			end
+			(errors.add(:base, "'#{@dictionary.original_filename}' is empty or invalid dictionary")) rescue 'NoMEthodError' 
+		else
+			true
 		end
-	end
   end
 
-  def dict_build
-	time_start = Time.now
-	
-	@hashed_anagram_clases = Hash.new([])
-	
-	File.open(@dictionary.path, "r") do |file|
+  def dict_build(path)
+  	time_start = Time.now
+  	
+  	@hashed_anagram_clases = Hash.new([])
+  	File.open(path, "r") do |file|
 		while line = file.gets
 			word = line.chomp 
 			@hashed_anagram_clases[word.split('').sort!.join('')] += [word]
 		end
-  	end
 
-	File.open(temp_file_name, "w") do |file| #delete prevous version
-		Marshal.dump(@hashed_anagram_clases, file)
-	end
-	
-	@dict_status = "Current  dictionary file (#{@dictionary.original_filename}) loaded in #{(Time.now - time_start)*1000}ms"
+  	File.open(temp_file_name, "w") do |file| #delete prevous version
+  		Marshal.dump(@hashed_anagram_clases, file)
+  	end
+  	
+  	# “rescue NoMEthodError “ because of unit test call with nil ActionDispatch object
+  	@dict_status = 
+  		"Current  dictionary file ('#{@dictionary.original_filename}') loaded in #{(Time.now - time_start)*1000}ms, #{@hashed_anagram_clases.size} sets of anagrams found." rescue 'NoMEthodError'
   end
   
-  def dict_take
-	@hashed_anagram_clases = nil
-	
-	File.open(temp_file_name, "r") do |file|
-	  @hashed_anagram_clases = Marshal.load(file)
-	end		
-	
-	@hashed_anagram_clases.size
+  def dict_take( path=Site::TEMP_FILENAME )
+  	@hashed_anagram_clases = nil
+
+  	begin
+  		File.open(path, "r") do |file|
+  		  @hashed_anagram_clases = Marshal.load(file)
+  		end		
+  		ret = @hashed_anagram_clases.size
+  	rescue
+  		ret = 0
+  	end
+  	ret	
   end
    		
 	def check

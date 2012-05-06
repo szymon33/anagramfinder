@@ -15,7 +15,7 @@ class AnagramsController < ApplicationController
 	  @anagram = Anagram.new(params[:anagram])
 	  
 	  if remotipart_submitted?
-	  	@anagram.dict_build	
+	  	@anagram.dict_build(@anagram.dictionary.path)
 	  	session[:dict_status] =  @anagram.dict_status
   	  end
 

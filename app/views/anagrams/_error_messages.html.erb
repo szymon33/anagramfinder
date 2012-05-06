@@ -1,7 +1,6 @@
   <% if target.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(target.errors.count, "error") %> prohibited this recommendation from being saved:</h2>
-
+    <div id="error_explanation">    
+      <h2><%= pluralize(target.errors.count, "error") %> prevented this anagram check from being solved:</h2>
       <ul>
       <% target.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

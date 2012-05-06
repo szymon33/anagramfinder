@@ -1,0 +1,27 @@
+== Task
+
+  Write a web application (webapp) using Ruby on Rails that reads a dictionary file and allows a user to find anagrams. The webapp should allow for the upload of a text file which will be the dictionary file. The dictionary file consists of a list of words. Each word is on separate line.
+ The webapp should provide an input where a user can input a word of their choice. On hitting enter (or clicking a button) the webapp should find all anagrams, if any exist, of the word and display them. If no anagrams are found it should display “No anagrams found for ”. Please also display timings for loading the dictionary and timings for each anagram set request.
+
+== Solution
+
+A simplified description of this anagram method is a four steps task.
+1. For each word in the file sort the letters to produce a key.
+2. Sort all of the words in the list by their key. 
+3. Store the list (hash table) by using i.e. binary serialization provided by Marshal Ruby module.
+4. In the hash table find all adjacent words with the same key (these are the anagram classes).
+
+== Implementation, shortly
+
+1. Database
+No database
+
+2. Gems installed.
+As ActiveRecord is abandoned page requests are handled as .js. So I installed remotipart gem which helped me handle the dictionary Rails file_field form helper. This could be also developed with the iFrame method (respond_to_parent gem). But it seems to be easier with jQuery. So remotipart is the only 'special' gem beyond the standard 'rails new' commend generator.
+
+3. Configuration
+The application has one parameter stored in site.rb in Rails initializers folder
+
+TEMP_FILENAME = Rails.root.join('public',"anagramfinder.tmp").
+
+This is the name and location of the temporary file.

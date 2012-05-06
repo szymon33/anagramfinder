@@ -34,3 +34,6 @@ gem "remotipart", "~> 1.0"
 # To use debugger
 # gem 'ruby-debug'
 
+group :test, :development do
+  gem 'rspec-rails'
+end

@@ -1,4 +1,6 @@
 <b><%= Time.now.strftime('%d-%b-%Y %I:%m %p') %></b><br>	
+<hr />
+<p>
 <% if @anagram.anagrams.blank? %> 
 <%=  "No anagrams found for word '#{@anagram.word}'" %>
 <% else %>

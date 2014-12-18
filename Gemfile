@@ -19,7 +19,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'therubyracer'
+# gem 'therubyracer'
 gem "remotipart", "~> 1.0"
 
 # To use ActiveModel has_secure_password
